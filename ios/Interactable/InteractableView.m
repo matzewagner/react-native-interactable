@@ -277,7 +277,7 @@ RCT_NOT_IMPLEMENTED(- (instancetype)init)
                 {
                     if ([self.insideAlertAreas containsObject:area.id])
                     {
-                        [alert setObject:@"leave" forKey:area.id];
+                       // [alert setObject:@"leave" forKey:area.id];
                         [self.insideAlertAreas removeObject:area.id];
                     }
                 }

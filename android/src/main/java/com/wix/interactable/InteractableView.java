@@ -121,7 +121,7 @@ public class InteractableView extends ViewGroup implements PhysicsAnimator.Physi
                     }
                 } else {
                     if(insideAlertAreas.contains(area.id)) {
-                        listener.onAlert(area.id, "leave");
+                        //listener.onAlert(area.id, "leave");
                         insideAlertAreas.remove(area.id);
                     }
                 }
