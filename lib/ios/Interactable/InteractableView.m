@@ -312,6 +312,19 @@ RCT_NOT_IMPLEMENTED(- (instancetype)init)
     }
     
     CGPoint translation = [pan translationInView:self];
+/*
+    GNARBOX ADDITION TO TRACK PAN POSITION
+*/
+    if (self.onTrackPan && self.trackPan)
+    {
+        self.onTrackPan(@{
+                @"x": @(self.dragStartCenter.x + translation.x),
+                @"y": @(self.dragStartCenter.y + translation.y)
+                });
+    }
+/*
+    END GNARBOX ADDITION
+*/
     self.dragBehavior.anchorPoint = CGPointMake(self.dragStartCenter.x + translation.x, self.dragStartCenter.y + translation.y);
     [self.animator ensureRunning];
     

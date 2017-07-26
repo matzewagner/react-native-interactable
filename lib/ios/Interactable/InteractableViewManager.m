@@ -42,7 +42,14 @@ RCT_EXPORT_VIEW_PROPERTY(onDrag, RCTDirectEventBlock)
 RCT_EXPORT_VIEW_PROPERTY(initialPosition, CGPoint)
 RCT_EXPORT_VIEW_PROPERTY(onAnimatedEvent, RCTDirectEventBlock)
 RCT_EXPORT_VIEW_PROPERTY(reportOnAnimatedEvents, BOOL)
-
+/*
+    GNARBOX ADDITION TO TRACK PAN POSITION
+*/
+RCT_EXPORT_VIEW_PROPERTY(trackPan, BOOL)
+RCT_EXPORT_VIEW_PROPERTY(onTrackPan, RCTDirectEventBlock)
+/*
+    END GNARBOX ADDITION
+*/
 RCT_EXPORT_METHOD(setVelocity:(nonnull NSNumber *)reactTag
                   params:(NSDictionary*)params)
 {
