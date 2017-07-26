@@ -103,7 +103,7 @@ RCT_NOT_IMPLEMENTED(- (instancetype)init)
 
 @implementation InteractableView
 
-- (instancetype)init
+- (instancetype)initWithBridge:(RCTBridge *)bridge
 {
     if ((self = [super init]))
     {
@@ -112,6 +112,7 @@ RCT_NOT_IMPLEMENTED(- (instancetype)init)
         self.reactRelayoutHappening = NO;
         self.insideAlertAreas = [NSMutableSet set];
         self.dragEnabled = YES;
+        self.bridge = bridge;
         
         // pan gesture recognizer for touches
         self.pan = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(handlePan:)];
@@ -244,9 +245,7 @@ RCT_NOT_IMPLEMENTED(- (instancetype)init)
                                                                                    @"y": @(deltaFromOrigin.y)}
                                                                   coalescingKey:self.coalescingKey];
 
-        RCTRootView *rootView = [self getRootView];
-        [[[rootView bridge]eventDispatcher] sendEvent:event];
-        
+        [[self.bridge eventDispatcher] sendEvent:event];
         
         // self.onAnimatedEvent(@
         //                      {
@@ -313,6 +312,19 @@ RCT_NOT_IMPLEMENTED(- (instancetype)init)
     }
     
     CGPoint translation = [pan translationInView:self];
+/*
+    GNARBOX ADDITION TO TRACK PAN POSITION
+*/
+    if (self.onTrackPan && self.trackPan)
+    {
+        self.onTrackPan(@{
+                @"x": @(self.dragStartCenter.x + translation.x),
+                @"y": @(self.dragStartCenter.y + translation.y)
+                });
+    }
+/*
+    END GNARBOX ADDITION
+*/
     self.dragBehavior.anchorPoint = CGPointMake(self.dragStartCenter.x + translation.x, self.dragStartCenter.y + translation.y);
     [self.animator ensureRunning];
     

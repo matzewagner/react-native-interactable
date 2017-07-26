@@ -86,7 +86,16 @@ public class InteractableViewManager extends ViewGroupManager<InteractableView> 
     public void setDragEnabled(InteractableView view, @Nullable boolean dragEnabled) {
         view.setDragEnabled(dragEnabled);
     }
-
+/**
+    GNARBOX ADDITION TO TRACK PAN POSITION
+*/
+    @ReactProp(name = "trackPan")
+    public void setTrackPan(InteractableView view, @Nullable boolean trackPan) {
+        view.setTrackPan(trackPan);
+    }
+/**
+    END GNARBOX ADDITION
+*/
     @ReactProp(name = "snapPoints")
     public void setSnapTo(InteractableView view, @Nullable ReadableArray snapPoints) {
         view.setSnapPoints(RNConvert.interactablePoints(snapPoints));
@@ -151,6 +160,13 @@ public class InteractableViewManager extends ViewGroupManager<InteractableView> 
                 .put("onAlert", MapBuilder.of("registrationName", "onAlert"))
                 .put("onAnimatedEvent", MapBuilder.of("registrationName", "onAnimatedEvent"))
                 .put("onDrag", MapBuilder.of("registrationName", "onDrag"))
+/**
+    GNARBOX ADDITION TO TRACK PAN POSITION
+*/
+                .put("onTrackPan", MapBuilder.of("registrationName", "onTrackPan"))
+/**
+    END GNARBOX ADDITION
+*/                
                 .build();
     }
 
@@ -182,6 +198,16 @@ public class InteractableViewManager extends ViewGroupManager<InteractableView> 
         public void onDrag(String state, float x, float y) {
             eventDispatcher.dispatchEvent(new Events.onDrag(interactableView.getId(),state, x, y));
         }
+/**
+    GNARBOX ADDITION TO TRACK PAN POSITION
+*/
+        @Override
+        public void onTrackPan(float x, float y) {
+            eventDispatcher.dispatchEvent(new Events.onTrackPan(interactableView.getId(), x, y));
+        }
+/**
+    END GNARBOX ADDITION
+*/        
     }
 }
 

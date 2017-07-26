@@ -98,4 +98,31 @@ public class Events {
             rctEventEmitter.receiveEvent(getViewTag(), getEventName(), eventData);
         }
     }
+/**
+    GNARBOX ADDITION TO TRACK PAN POSITION
+*/
+    public static class onTrackPan extends Event<onTrackPan> {
+
+        WritableMap eventData;
+
+        public onTrackPan(int viewTag, float x, float y) {
+            super(viewTag);
+            eventData = Arguments.createMap();
+            eventData.putDouble("x", PixelUtil.toDIPFromPixel(x));
+            eventData.putDouble("y", PixelUtil.toDIPFromPixel(y));
+        }
+
+        @Override
+        public String getEventName() {
+            return "onTrackPan";
+        }
+
+        @Override
+        public void dispatch(RCTEventEmitter rctEventEmitter) {
+            rctEventEmitter.receiveEvent(getViewTag(), getEventName(), eventData);
+        }
+    }
+/**
+    END GNARBOX ADDITION
+*/
 }

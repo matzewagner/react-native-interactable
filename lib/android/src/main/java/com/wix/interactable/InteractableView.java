@@ -41,6 +41,13 @@ public class InteractableView extends ViewGroup implements PhysicsAnimator.Physi
     private boolean verticalOnly;
     private boolean horizontalOnly;
     private boolean dragEnabled;
+/**
+    GNARBOX ADDITION TO TRACK PAN POSITION
+*/
+    private boolean trackPan;
+/**
+    END GNARBOX ADDITION
+*/    
     private boolean isSwiping;
     private PointF initialPosition;
 
@@ -254,6 +261,15 @@ public class InteractableView extends ViewGroup implements PhysicsAnimator.Physi
                 if(this.dragBehavior!=null){
                     this.dragBehavior.setAnchorPoint(new PointF(newX,newY));
                 }
+/*
+    GNARBOX ADDITION TO TRACK PAN POSITION
+*/
+                if (trackPan) {
+                    listener.onTrackPan(newX, newY);
+                }
+/*
+    END GNARBOX ADDITION
+*/
                 break;
             case MotionEvent.ACTION_UP:
             case MotionEvent.ACTION_CANCEL:
@@ -459,6 +475,16 @@ public class InteractableView extends ViewGroup implements PhysicsAnimator.Physi
             handleEndOfDrag();
         }
     }
+
+/**
+    GNARBOX ADDITION TO TRACK PAN POSITION
+*/
+    public void setTrackPan(boolean trackPan) {
+        this.trackPan = trackPan;
+    }
+/**
+    END GNARBOX ADDITION
+*/
 
     public void setInitialPosition(PointF initialPosition) {
         this.initialPosition = initialPosition;
