@@ -574,5 +574,12 @@ public class InteractableView extends ViewGroup implements PhysicsAnimator.Physi
         void onAlert(String alertAreaId, String alertType);
         void onAnimatedEvent(float x, float y);
         void onDrag(String state, float x, float y);
+/**
+    GNARBOX ADDITION TO TRACK PAN POSITION
+*/
+        void onTrackPan(float x, float y);
+/**
+    END GNARBOX ADDITION
+*/  
     }
 }
