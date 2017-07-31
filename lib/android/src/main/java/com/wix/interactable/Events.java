@@ -105,11 +105,13 @@ public class Events {
 
         WritableMap eventData;
 
-        public onTrackPan(int viewTag, float x, float y) {
+        public onTrackPan(int viewTag, float relativeX, float relativeY, float absoluteX, float absoluteY) {
             super(viewTag);
             eventData = Arguments.createMap();
-            eventData.putDouble("x", PixelUtil.toDIPFromPixel(x));
-            eventData.putDouble("y", PixelUtil.toDIPFromPixel(y));
+            eventData.putDouble("relativeX", PixelUtil.toDIPFromPixel(relativeX));
+            eventData.putDouble("relativeY", PixelUtil.toDIPFromPixel(relativeY));
+            eventData.putDouble("absoluteX", PixelUtil.toDIPFromPixel(absoluteX));
+            eventData.putDouble("absoluteY", PixelUtil.toDIPFromPixel(absoluteY));
         }
 
         @Override

@@ -317,9 +317,12 @@ RCT_NOT_IMPLEMENTED(- (instancetype)init)
 */
     if (self.onTrackPan && self.trackPan)
     {
+        CGPoint absoluteScreenPosition = [pan locationInView:self.window];
         self.onTrackPan(@{
-                @"x": @(self.dragStartCenter.x + translation.x),
-                @"y": @(self.dragStartCenter.y + translation.y)
+                @"relativeX": @(self.dragStartCenter.x + translation.x),
+                @"relativeY": @(self.dragStartCenter.y + translation.y),
+                @"absoluteX": @(absoluteScreenPosition.x),
+                @"absoluteY": @(absoluteScreenPosition.y)
                 });
     }
 /*

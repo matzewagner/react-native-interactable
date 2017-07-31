@@ -265,7 +265,7 @@ public class InteractableView extends ViewGroup implements PhysicsAnimator.Physi
     GNARBOX ADDITION TO TRACK PAN POSITION
 */
                 if (trackPan) {
-                    listener.onTrackPan(newX, newY);
+                    listener.onTrackPan(newX, newY, event.getRawX(), event.getRawY());
                 }
 /*
     END GNARBOX ADDITION
@@ -577,7 +577,7 @@ public class InteractableView extends ViewGroup implements PhysicsAnimator.Physi
 /**
     GNARBOX ADDITION TO TRACK PAN POSITION
 */
-        void onTrackPan(float x, float y);
+        void onTrackPan(float relativeX, float relativeY, float absoluteX, float absoluteY);
 /**
     END GNARBOX ADDITION
 */  

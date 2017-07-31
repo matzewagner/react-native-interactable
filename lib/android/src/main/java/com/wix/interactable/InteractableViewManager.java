@@ -202,8 +202,8 @@ public class InteractableViewManager extends ViewGroupManager<InteractableView> 
     GNARBOX ADDITION TO TRACK PAN POSITION
 */
         @Override
-        public void onTrackPan(float x, float y) {
-            eventDispatcher.dispatchEvent(new Events.onTrackPan(interactableView.getId(), x, y));
+        public void onTrackPan(float relativeX, float relativeY, float absoluteX, float absoluteY) {
+            eventDispatcher.dispatchEvent(new Events.onTrackPan(interactableView.getId(), relativeX, relativeY, absoluteX, absoluteY));
         }
 /**
     END GNARBOX ADDITION
